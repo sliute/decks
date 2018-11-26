@@ -1,20 +1,25 @@
 import * as React from 'react';
 import './App.css';
 
-import logo from './logo.svg';
+// import Deck from './components/Deck';
+import Decks from './components/Decks';
+
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from "react-apollo";
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql"
+});
 
 class App extends React.Component {
   public render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </div>
+      <ApolloProvider client={client}>
+        <div>
+          <h2>Welcome to my playing cards decks!</h2>
+          <Decks />
+        </div>
+      </ApolloProvider>
     );
   }
 }

@@ -26,13 +26,13 @@ async function StartServer() {
     const typeDefs = gql`
       type Deck {
         description: String
-        id: ID!
+        id: String!
         name: String
         url: String
       }
 
       type Query {
-        deck(id: ID): Deck
+        deck(id: String): Deck
         decks: [Deck]
       }
     `;
