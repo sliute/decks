@@ -12,6 +12,9 @@ const Decks = () => (
       {
         decks {
           id
+          name
+          description
+          url
         }
       }
     `}
@@ -21,7 +24,7 @@ const Decks = () => (
       if (error) { return <p>Error :(</p> };
 
       return data.decks.map((deck:any) => (
-        <Deck id={deck.id}/>
+        <Deck {...deck} />
       ));
     }}
   </Query>

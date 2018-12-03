@@ -1,35 +1,18 @@
 import * as React from 'react';
 
-import { Query } from "react-apollo";
+interface IDeckType {
+  id: string;
+  name: string;
+  description: string;
+  url: string;
+}
 
-import gql from "graphql-tag";
-
-const GET_DECK = gql`
-  query Deck($id: String!) {
-    deck(id: $id) {
-      name
-      description
-      url
-    }
-  }
-`;
-
-const Deck = ({id}:{id:string}) => (
-  <Query query={GET_DECK} variables={{ id }}>
-    {({ loading, error, data }) => {
-      if (loading) { return <p>Loading...</p> };
-
-      if (error) { return <p>Error :(</p> };
-
-      return (
-        <div key={data.deck.name}>
-          <p>{`${data.deck.name}: ${data.deck.description}`}</p>
-          <p>Details at {`${data.deck.url}`}</p>
-          <br />
-        </div>
-      );
-    }}
-  </Query>
+const Deck = ({ id, name, description, url }: IDeckType ) => (
+  <div key={id}>
+    <p>{`${name}: ${description}`}</p>
+    <p>Details at {`${url}`}</p>
+    <br />
+  </div>
 );
 
 export default Deck;
